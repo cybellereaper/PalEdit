@@ -5,5 +5,10 @@ pillow==10.2.0
 pyinstaller==6.12.0                 # Newest and most stable one currently
 pyinstaller-hooks-contrib==2025.2   # this one would match latest pyinstaller version
 pywin32-ctypes==0.2.2 
-palworld_save_tools==1.4.0          # Specifying the most stable one
+palworld_save_tools==0.24.0         # Specifying a compatible, stable version
 pyperclip==1.8.2                    # ive specified the most stable version
+fastapi==0.112.2
+uvicorn[standard]==0.30.6
+Jinja2==3.1.4
+python-multipart==0.0.9
+httpx==0.27.2
