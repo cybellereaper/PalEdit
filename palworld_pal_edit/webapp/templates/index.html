@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="panel">
+  <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+    <div>
+      <p class="pill">Modern editor</p>
+      <h2 style="margin: 0.3rem 0 0.5rem;">Edit Palworld saves from your browser</h2>
+      <p class="muted">
+        Upload a <strong>.sav</strong> or <strong>.json</strong> file, review the raw JSON, and publish your changes just like you would on GitHub. Your save is converted locally—no remote services required.
+      </p>
+    </div>
+    <form action="/upload" method="post" enctype="multipart/form-data" style="display: grid; gap: 1rem;">
+      <label style="display: flex; flex-direction: column; gap: 0.5rem; font-weight: 600;">
+        Choose a save file
+        <input type="file" name="file" accept=".sav,.json" required style="
+          padding: 0.85rem 1rem;
+          border-radius: 10px;
+          border: 1px dashed var(--border);
+          background: rgba(255,255,255,0.02);
+          color: var(--text);
+        ">
+      </label>
+      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+        <button class="cta" type="submit">Open in editor</button>
+        <a class="cta secondary" href="https://github.com/EternalWraith/PalEdit" target="_blank" rel="noreferrer">View project</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section style="margin-top: 1.5rem;" class="grid">
+  <article class="panel">
+    <h3 style="margin-top: 0;">GitHub-style editing</h3>
+    <p class="muted">Work in a clean, code-focused editor with line numbers, so reviewing save data feels familiar.</p>
+  </article>
+  <article class="panel">
+    <h3 style="margin-top: 0;">Safe conversions</h3>
+    <p class="muted">Uploads stay in memory and can be downloaded again as JSON or reconstructed into a Palworld .sav.</p>
+  </article>
+  <article class="panel">
+    <h3 style="margin-top: 0;">Fast feedback</h3>
+    <p class="muted">Validation happens on save—mistyped JSON is caught before it reaches your game.</p>
+  </article>
+</section>
+{% endblock %}

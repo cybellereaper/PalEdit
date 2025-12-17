@@ -43,6 +43,17 @@ Download the compiled executable from [Nexus Mods](https://www.nexusmods.com/pal
 4. Save
 5. Done
 
+## **🌐 Web editor (preview)**
+
+Prefer a browser-based experience that feels like editing files on GitHub? Launch the lightweight FastAPI web UI:
+
+```bash
+pip install -r requirements.txt
+uvicorn palworld_pal_edit.webapp.server:app --reload --port 8000
+```
+
+Then open [http://localhost:8000](http://localhost:8000) to upload a `.sav` or `.json`, review the raw data with line numbers, validate changes, and download an updated save file.
+
 ## **💾 Cloning Pals**
 
 1. Load a save
