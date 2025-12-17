@@ -43,6 +43,22 @@ Download the compiled executable from [Nexus Mods](https://www.nexusmods.com/pal
 4. Save
 5. Done
 
+## **🌐 GitHub Pages JSON editor**
+
+Want the GitHub-style editing experience without running a server? The `docs/` folder ships a **static, Pages-ready JSON editor** that runs entirely in your browser—perfect for GitHub Pages or any static host.
+
+1. Convert your save locally with the bundled helper:
+    ```bash
+    python palworld_pal_edit/SaveConverter.py SaveData.sav --to-json -o SaveData.json
+    ```
+2. Open `docs/index.html` (or visit your GitHub Pages URL) and drop the `.json` export. You’ll get line numbers, JSON validation, keyboard shortcuts, and local persistence—no backend required.
+3. Download the edited JSON and convert it back to a Palworld save:
+    ```bash
+    python palworld_pal_edit/SaveConverter.py SaveData.json --from-json -o SaveData.sav
+    ```
+
+To host it on GitHub Pages, push the `docs/` folder, open **Settings → Pages**, choose **Deploy from a branch**, and pick the `docs/` folder. Your Pages URL will serve the editor instantly.
+
 ## **💾 Cloning Pals**
 
 1. Load a save

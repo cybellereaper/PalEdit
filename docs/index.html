@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PalEdit – GitHub Pages JSON Editor</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="shell">
+      <div class="brand">
+        <div class="logo">PalEdit</div>
+        <span class="pill">Pages-ready</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/EternalWraith/PalEdit" rel="noreferrer">GitHub</a>
+      </div>
+    </header>
+
+    <main class="page shell">
+      <section class="panel hero">
+        <div class="stack">
+          <p class="pill">Static, GitHub Pages-first</p>
+          <h1>Palworld save JSON editor</h1>
+          <p class="muted">
+            Drop a <strong>.json</strong> export of your Palworld save, edit it with GitHub-style line numbers, and download the result without any backend. Everything runs entirely in your browser.
+          </p>
+          <div class="badges">
+            <span class="chip">Zero servers</span>
+            <span class="chip">Works offline</span>
+            <span class="chip">Keeps edits locally</span>
+          </div>
+        </div>
+        <div class="panel inset">
+          <h3>Publish on GitHub Pages</h3>
+          <ol class="muted">
+            <li>Commit and push the bundled <code>docs/</code> folder.</li>
+            <li>In GitHub → Settings → Pages, pick <strong>Deploy from a branch</strong> with the <strong>docs/</strong> folder.</li>
+            <li>Share your Pages URL and edit saves directly in the browser.</li>
+          </ol>
+          <p class="hint">No FastAPI server or extra hosting required—just static HTML, CSS, and JavaScript.</p>
+        </div>
+      </section>
+
+      <section class="panel stack">
+        <div class="upload-row">
+          <div id="dropzone" class="dropzone" role="button" tabindex="0" aria-label="Upload or drop a JSON save">
+            <input type="file" id="file-input" accept=".json" />
+            <p><strong>Drop or choose</strong> a Palworld <code>.json</code> save export.</p>
+            <p class="muted">We validate and format your JSON locally—nothing leaves the page.</p>
+          </div>
+          <div class="controls">
+            <button id="format-btn" type="button">Format JSON</button>
+            <button id="minify-btn" type="button">Minify</button>
+            <button id="copy-btn" type="button">Copy</button>
+            <button id="download-btn" class="primary" type="button">Download JSON</button>
+            <button id="clear-btn" class="ghost" type="button">Reset</button>
+          </div>
+        </div>
+
+        <div class="editor-shell">
+          <pre id="line-numbers" aria-hidden="true"></pre>
+          <textarea id="editor" spellcheck="false" aria-label="PalEdit JSON editor"></textarea>
+        </div>
+
+        <div id="status" class="status" role="status"></div>
+      </section>
+
+      <section class="panel grid">
+        <div class="stack">
+          <h3>Convert saves locally</h3>
+          <p class="muted">Use the bundled Python helper to move between <code>.sav</code> and <code>.json</code> before loading your save in the browser.</p>
+          <pre class="code"><code>python palworld_pal_edit/SaveConverter.py SaveData.sav --to-json -o SaveData.json
+python palworld_pal_edit/SaveConverter.py SaveData.json --from-json -o SaveData.sav
+</code></pre>
+          <p class="hint">Run both commands offline. The Pages editor only touches the JSON you provide.</p>
+        </div>
+        <div class="stack">
+          <h3>Keyboard shortcuts & tips</h3>
+          <ul class="muted bullets">
+            <li><strong>Ctrl/Cmd + Shift + F</strong> — format & validate JSON</li>
+            <li><strong>Ctrl/Cmd + S</strong> — download the current JSON</li>
+            <li><strong>Edits persist</strong> — we keep your last session in <code>localStorage</code></li>
+            <li><strong>Drop files anywhere</strong> on the dropzone to load and format</li>
+          </ul>
+          <p class="hint">This page is a single static document—perfect for GitHub Pages or any static host.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
