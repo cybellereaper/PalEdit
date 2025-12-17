@@ -43,6 +43,25 @@ Download the compiled executable from [Nexus Mods](https://www.nexusmods.com/pal
 4. Save
 5. Done
 
+## **🌐 Web editor (preview)**
+
+Prefer a browser-based experience that feels like editing files on GitHub? Launch the lightweight FastAPI web UI:
+
+```bash
+pip install -r requirements.txt
+uvicorn palworld_pal_edit.webapp.server:app --reload --port 8000
+```
+
+Then open [http://localhost:8000](http://localhost:8000) to upload a `.sav` or `.json`, review the raw data with line numbers, validate changes, and download an updated save file.
+
+### Deploying to GitHub Pages (static JSON editor)
+
+The repository includes a `docs/` folder with a fully static editor that runs entirely in the browser. To publish it on GitHub Pages:
+
+1. Push the `docs/` folder to your repository (it ships with this repo).
+2. In GitHub → Settings → Pages, select **Deploy from a branch**, choose the branch you’re using, and set the folder to `docs/`.
+3. Visit your Pages URL to open the JSON editor. Upload a Palworld save that you’ve converted to JSON (use the FastAPI app or `SaveConverter.py` to convert `.sav` → `.json`), edit it with GitHub-style line numbers, then download the updated JSON.
+
 ## **💾 Cloning Pals**
 
 1. Load a save

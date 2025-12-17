@@ -98,6 +98,34 @@ def convert_obj_to_sav(obj, output_path, force=False):
         f.write(sav_file)
 
 
+def sav_bytes_to_json_text(raw_bytes: bytes, minify: bool = False) -> str:
+    """
+    Convert raw Palworld save bytes into formatted JSON text.
+
+    This is primarily used by the web interface to avoid intermediate files.
+    """
+    raw_gvas, _ = decompress_sav_to_gvas(raw_bytes)
+    gvas_file = GvasFile.read(raw_gvas, PALWORLD_TYPE_HINTS, PALWORLD_CUSTOM_PROPERTIES)
+    indent = None if minify else 2
+    return json.dumps(gvas_file.dump(), indent=indent, cls=CustomEncoder, ensure_ascii=False)
+
+
+def json_text_to_sav_bytes(json_text: str) -> bytes:
+    """
+    Convert a JSON string produced by PalEdit back to Palworld save bytes.
+    """
+    data = json.loads(json_text)
+    gvas_file = GvasFile.load(data)
+    if (
+        "Pal.PalWorldSaveGame" in gvas_file.header.save_game_class_name
+        or "Pal.PalLocalWorldSaveGame" in gvas_file.header.save_game_class_name
+    ):
+        save_type = 0x32
+    else:
+        save_type = 0x31
+    return compress_gvas_to_sav(gvas_file.write(PALWORLD_CUSTOM_PROPERTIES), save_type)
+
+
 def convert_sav_to_json(filename, output_path, force=False, minify=False):
     print(f"Converting {filename} to JSON, saving to {output_path}")
     if os.path.exists(output_path):
