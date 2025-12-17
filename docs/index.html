@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PalEdit Web (GitHub Pages)</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <h1>PalEdit Web</h1>
+        <span class="pill">GitHub Pages</span>
+      </div>
+    </header>
+    <main class="page">
+      <section class="panel stack">
+        <div>
+          <p class="pill">Static preview</p>
+          <h2 style="margin: 0.25rem 0 0.4rem;">Edit Palworld save JSON in your browser</h2>
+          <p class="muted">
+            Drop a <strong>.sav</strong> or <strong>.json</strong> export of your Palworld save to review, tweak, and download—no server required. Pyodide powers conversion fully in the browser, so you can host this page directly on GitHub Pages.
+          </p>
+        </div>
+
+        <div class="grid">
+          <div class="stack">
+            <label for="file">Choose a Palworld save</label>
+            <input type="file" id="file" accept=".json,.sav" />
+            <p class="notice">Tip: everything runs in your browser. Load a <code>.sav</code> to convert it to JSON, make edits, then download a fresh <code>.sav</code> or <code>.json</code>.</p>
+          </div>
+          <div class="stack">
+            <h3 style="margin: 0;">How to publish on GitHub Pages</h3>
+            <ol class="muted" style="margin: 0; padding-left: 1.2rem; line-height: 1.6;">
+              <li>Push the <code>docs/</code> folder to your repository.</li>
+              <li>In repository settings, set Pages source to <strong>Deploy from a branch</strong> and choose <strong>docs/</strong>.</li>
+              <li>Visit your Pages URL to use the web editor instantly.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="editor">
+          <div class="line-numbers" id="line-numbers"></div>
+          <textarea id="editor" spellcheck="false" aria-label="PalEdit JSON editor"></textarea>
+        </div>
+
+        <div class="actions">
+          <div class="stack inline">
+            <label for="download-format" class="muted">Download as</label>
+            <select id="download-format">
+              <option value="json">JSON (.json)</option>
+              <option value="sav">Save (.sav)</option>
+            </select>
+          </div>
+          <div class="stack inline">
+            <button class="cta secondary" id="reset" type="button">Reset</button>
+            <button class="cta" id="download" type="button">Validate &amp; Download</button>
+          </div>
+        </div>
+
+        <div class="status" id="status" role="status">
+          <div class="spinner" aria-hidden="true"></div>
+          <span class="status-text">Loading Pyodide…</span>
+        </div>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

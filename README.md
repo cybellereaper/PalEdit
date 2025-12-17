@@ -43,6 +43,27 @@ Download the compiled executable from [Nexus Mods](https://www.nexusmods.com/pal
 4. Save
 5. Done
 
+## **🌐 Web editor (GitHub Pages, browser-only)**
+
+The repository ships with a `docs/` folder you can host directly on GitHub Pages. It uses Pyodide + `palworld-save-tools` inside the browser, so you can drop a `.sav` **or** `.json`, edit with GitHub-style line numbers, and download either format—no server or desktop runtime required.
+
+To publish on GitHub Pages:
+
+1. Push the `docs/` folder to your repository (it’s already included here).
+2. In GitHub → Settings → Pages, choose **Deploy from a branch** and set the folder to `docs/`.
+3. Visit your Pages URL to upload saves, validate JSON, and download either `*.json` or `*.sav` directly from the browser.
+
+> Pyodide is loaded from a CDN at runtime. If you see a load error, check your network connection and refresh.
+
+Prefer a local preview? You can still launch the FastAPI UI:
+
+```bash
+pip install -r requirements.txt
+uvicorn palworld_pal_edit.webapp.server:app --reload --port 8000
+```
+
+Then open [http://localhost:8000](http://localhost:8000) to upload a `.sav` or `.json`, review the raw data with line numbers, validate changes, and download an updated save file.
+
 ## **💾 Cloning Pals**
 
 1. Load a save
